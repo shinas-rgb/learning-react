@@ -1,39 +1,22 @@
 import './App.css'
-import { useState } from 'react';
 
 function Greeting(props) {
   return <h1>Hello Iam {props.name} {props.age} years old</h1>
 }
 
 function App() {
-  const [showGreeting, setShowGreeting] = useState(false);
-  const [name, setName] = useState("");
-
-  function toggleGreeting() {
-    setShowGreeting(!showGreeting);
-  }
-
-  function handleChange(event) {
-    const value = event.target.value;
-    setName(value);
-  }
+  const todos = [
+    { id: 1, text: "Learn react" },
+    { id: 2, text: "Build Website" },
+    { id: 3, text: "Earn money" },
+  ]
   return (
     <div>
-      <button onClick={toggleGreeting}>Click Me</button>
-      {showGreeting && (
-        <Greeting name={"malik"} age={32} />
-      )}
-
-      <br />
-      <br />
-      <input type="text" placeholder="Name" onChange={handleChange} />
-      <br />
-      {name}
-      {/* {showGreeting ? ( */}
-      {/*   <Greeting name={"Shinas"} age={18} /> */}
-      {/* ) : ( */}
-      {/*   <button>Click me</button> */}
-      {/* )} */}
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>{todo.text}</li>
+        ))}
+      </ul>
     </div>
   )
 }
