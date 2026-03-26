@@ -1,12 +1,31 @@
 import './App.css'
 import { Link, Route, Routes } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from './AuthContext.js'
 
+function Counter() {
+  const [count, setCount] = new useState(0)
+
+  useEffect(() => {
+    console.log("Counter Mounted")
+    return () => {
+      console.log("Counter Unmounted")
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log("Counter Updated")
+  }, [count])
+
+  return <button onClick={() => setCount(count + 1)}>{count}</button>
+}
+
 function HomePage() {
+  const [showCounter, setShowCounter] = new useState(false)
   return (
     <div>
-      <h1>Home Page</h1><br />
+      <button onClick={() => setShowCounter(!showCounter)}>Show counter</button>
+      {showCounter && <Counter />}
     </div>
   )
 }
@@ -43,7 +62,7 @@ function LoginPage() {
         </label>
         <input style={{ marginRight: '5px' }}
           type="text"
-          placeHolder='Your name'
+          placeholder='Your name'
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
