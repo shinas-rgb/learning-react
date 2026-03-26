@@ -1,22 +1,10 @@
 import './App.css'
-
-function Greeting(props) {
-  return <h1>Hello Iam {props.name} {props.age} years old</h1>
-}
+import SignupForm from './components/SignupForm'
 
 function App() {
-  const todos = [
-    { id: 1, text: "Learn react" },
-    { id: 2, text: "Build Website" },
-    { id: 3, text: "Earn money" },
-  ]
   return (
     <div>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.text}</li>
-        ))}
-      </ul>
+      <SignupForm />
     </div>
   )
 }
